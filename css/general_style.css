@@ -1,0 +1,45 @@
+    body {
+      font-family: Jacques Francois;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      margin-top: 100px;
+    }
+    .container h1 {
+      text-align: center;
+    }
+    .container h2 {
+      background-color: #d0cdfc;
+      text-align: center;
+      border-radius: 90px;
+      margin-bottom: 50px;
+    }
+    .container button {
+      background-color: #f1f1f1;
+      display: block;
+      width: 100%;
+      font-family: Jacques Francois;
+      padding: 10px;
+      font-weight: bold;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 25px;
+    }
+    
+    .container a {
+      color: #16537e;
+    }
+    
+     footer {
+      text-align: center;
+      margin-top: 150px;
+    }

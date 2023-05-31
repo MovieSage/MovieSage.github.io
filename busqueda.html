@@ -25,7 +25,15 @@
 
   <div class="container">
       <h1>Búsqueda de Películas</h1>
-      <form id="search-form">
+      <form id="search-form" onsubmit="event.preventDefault();">
+        <script>
+          const searchForm = document.getElementById('search-form');
+          searchForm.addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevenir el envío del formulario
+          createAndrunQuery(); // Llamar a la función createAndrunQuery()
+          });
+        </script>
+        
         <div class="form-group">
           <label for="actor">Actor:</label>
           <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
@@ -38,16 +46,17 @@
           <label>Género:</label>
           <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
           <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
-          <label for="genre-terror"><input type="radio" id="genre-drama" name="genre" value="drama"> Terror</label>
-          <label for="genre-romance"><input type="radio" id="genre-drama" name="genre" value="drama"> Romance </label>
-          <label for="genre-SciFi"><input type="radio" id="genre-drama" name="genre" value="drama"> Ciencia Ficción </label>
+          <label for="genre-terror"><input type="radio" id="genre-terror" name="genre" value="terror"> Terror</label>
+          <label for="genre-romance"><input type="radio" id="genre-romance" name="genre" value="romance"> Romance </label>
+          <label for="genre-SciFi"><input type="radio" id="genre-SciFi" name="genre" value="scifi"> Ciencia Ficción </label>
+          <label for="genre-none"><input type="radio" id="genre-none" name="genre" value="none"> No importa </label>
         </div>
         <div class="form-group">
           <label for="ranking">Ranking:&nbsp<span id="slider-value">5</span></label>
-          <input type="range" id="ranking" name="ranking" min="1" max="10" step="0.1">
+          <input type="range" id="ranking" name="ranking" min="0" max="10" step="0.1">
           
         </div>
-        <input type="submit" value="Buscar" class="button">
+        <button type="submit" value="Buscar" class="button" id="searchBT">Buscar</button>
       </form>
     </div>
   
@@ -61,7 +70,6 @@
           <p>Ranking:&nbsp<span id="movieRank1">punteo</span></p>
           <p id="movieGenre1">Género</p>
           <p id="movieDirector1">Director</p>
-          <p id="movieActor1">Actores</p>
         </div>
         <div class="movie-card" id="movieSpace2">
           <h3 id="movieTitle2">Película 2</h3>
@@ -69,7 +77,6 @@
           <p>Ranking:&nbsp<span id="movieRank2">punteo</span></p>
           <p id="movieGenre2">Género</p>
           <p id="movieDirector2">Director</p>
-          <p id="movieActor2">Actores</p>
         </div>
         <div class="movie-card" id="movieSpace3">
           <h3 id="movieTitle3">Película 3</h3>
@@ -77,7 +84,6 @@
           <p>Ranking:&nbsp<span id="movieRank3">punteo</span></p>
           <p id="movieGenre3">Género</p>
           <p id="movieDirector3">Director</p>
-          <p id="movieActor3">Actores</p>
         </div>
         <div class="movie-card" id="movieSpace4">
           <h3 id="movieTitle4">Película 4</h3>
@@ -85,7 +91,6 @@
           <p>Ranking:&nbsp<span id="movieRank4">punteo</span></p>
           <p id="movieGenre4">Género</p>
           <p id="movieDirector4">Director</p>
-          <p id="movieActor4">Actores</p>
         </div>
         <div class="movie-card" id="movieSpace5">
           <h3 id="movieTitle5">Película 5</h3>
@@ -93,7 +98,6 @@
           <p>Ranking:&nbsp<span id="movieRank5">punteo</span></p>
           <p id="movieGenre5">Género</p>
           <p id="movieDirector5">Director</p>
-          <p id="movieActor5">Actores</p>
         </div>
         <div class="movie-card" id="movieSpace6">
           <h3 id="movieTitle6">Película 6</h3>
@@ -101,7 +105,6 @@
           <p>Ranking:&nbsp<span id="movieRank6">punteo</span></p>
           <p id="movieGenre6">Género</p>
           <p id="movieDirector6">Director</p>
-          <p id="movieActor6">Actores</p>
         </div>
       </div>
   

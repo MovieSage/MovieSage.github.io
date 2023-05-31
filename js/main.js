@@ -1,58 +1,83 @@
 $(document).ready(function() {
-
-
-    createAndrunQuery();
-
-
+  // Código adicional que puedas tener dentro de esta función
 });
 
+function createAndrunQuery() {
+  
+  const driver = neo4j.driver('bolt://52.70.153.190:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
+  const actorName = document.getElementById('actor').value;
+  const directorName = document.getElementById('director').value;
+  const selectedRadioButton = document.querySelector('input[name="genre"]:checked');
+  const rankingSlider = document.getElementById('ranking');
+  const rankingValue = parseFloat(rankingSlider.value).toFixed(1);
 
-function createAndrunQuery(){
+  let labelText = ''; // Valor predeterminado si no se selecciona ningún radio button
 
-      const driver = neo4j.driver('bolt://54.89.78.142:7687', neo4j.auth.basic('neo4j', 'screw-transistor-orifices'));
-      // nombres de actores y directores 
-      const actorName = document.getElementById(actor).value;
-      const directorName = document.getElementById(director).value;
+  if (selectedRadioButton) {
+    labelText = selectedRadioButton.parentNode.textContent.trim();
+  }
 
-      // géneros de películas
-      const genreAction = document.getElementById(genre-action).value;
-      const genreComedy = document.getElementById(genre-comedy).value;
-      const genreTerror = document.getElementById(genre-terror).value;
-      const genreRomance = document.getElementById(genre-romance).value;
-      const genreSciFi = document.getElementById(genre-SciFi).value;
+  
+  const conditions = [];
 
-      // ranking 
-      const movieRating = document.getElementById(ranking).value; 
+  let query = '';
 
-      // inicio de querys
-      // querys para director y actor
-      const queryActor = `MATCH (m:Movie)-[:Actor_in]->(a:Actor {name: '${actorName}'}) RETURN m.title`;
-      const queryDirector = `MATCH (m:Movie)-[:Directed_by]->(d:Director {name: '${directorName}'}) RETURN m.title`;
+  
+  if (actorName) {
+    query += `MATCH (a:Actor {name: '${actorName}'})-[:Acted_in]->(m:Movie)`;
+  }
 
-      // querys para generos
-      const queryAction = `MATCH (m:Movie) WHERE m.genre = '${genreAction}' RETURN m.title`;
-      const queryComedy = `MATCH (m:Movie) WHERE m.genre = '${genreComedy}' RETURN m.title`;
-      const queryTerror = `MATCH (m:Movie) WHERE m.genre = '${genreTerror}' RETURN m.title`;
-      const queryRomance = `MATCH (m:Movie) WHERE m.genre = '${genreRomance}' RETURN m.title`;
-      const querySciFi = `MATCH (m:Movie) WHERE m.genre = '${genreSciFi}' RETURN m.title`;
+  if (directorName) {
+    query += `MATCH (d:Director {name: '${directorName}'})-[:Directed]->(m)`;
+  }
 
-      // querys ranking
-      const queryRating = `MATCH (m:Movie) WHERE m.rating = '${movieRating}' RETURN m.title`;
+  if (labelText && !(labelText.match("No Importa"))) {
+    conditions.push(`m.genre = '${labelText}'`);
+  }
 
+  if (rankingValue && rankingValue != 0) {
+    conditions.push(`m.rating >= ${rankingValue}`);
+  }
 
-      
-      const session = driver.session();
+  if (conditions.length > 0) {
+    query += ' WHERE ' + conditions.join(' AND ');
+  }
+
+  query += ' RETURN m.title, m.year, m.rating, m.genre, d.name';
 
 
-      session.run(query)
+
+
+  //const query = `MATCH (a:Actor {name: 'Arnold Schwarzenegger'})-[:Acted_in]->(m:Movie) MATCH (d:Director {name: 'James Cameron'})-[:Directed]->(m) WHERE m.genre = 'Acción' AND m.rating >= 8.0 RETURN m.title`;
+  //const query = `MATCH (a:Actor {name: '${actorName}'})-[:Acted_in]->(m:Movie)  MATCH (d:Director {name: '${directorName}'})-[:Directed]->(m) WHERE m.genre = '${labelText}' AND m.rating >= ${rankingValue} RETURN m.title, m.year, m.rating, m.genre, d.name`;
+
+  //console.log(query);
+  console.log(query);
+
+  const session = driver.session();
+  session.run(query, {actorName, directorName, labelText, rankingValue})
         .then(result => {
           result.records.forEach(record => {
-            var node = record.get('n');
-            var prop = node.properties;
-            console.log(prop)
+            var movieName = record.get('m.title');
+            var movieYear = record.get('m.year');
+            var movieRanking = record.get('m.genre');
+            var movieDirector = record.get('d.name');
 
-       
+            let movieYearExtracted;
 
+            if (typeof movieYear === 'object' && 'low' in movieYear && 'high' in movieYear) {
+            // Si es una representación de Integer
+            movieYearExtracted = movieYear.low || movieYear.high;
+            } else {
+            // Si es un número regular
+            movieYearExtracted = movieYear;
+            }
+
+
+            console.log(movieName);
+            console.log(movieYearExtracted);
+            console.log(movieRanking);
+            console.log(movieDirector);
           });
         })
         .catch(error => {
@@ -62,5 +87,6 @@ function createAndrunQuery(){
           session.close();
           driver.close();
         });
+
 
 }

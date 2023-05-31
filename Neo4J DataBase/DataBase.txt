@@ -1,798 +1,853 @@
-1. Película de Rambo 2 
+CREATE (m:Movie {title: 'Rambo: Acorralado Parte II', year: 1985, genre: 'Acción', rating: 6.5})
 
-	CREATE (m:Movie {title: 'Rambo: Acorralado Parte II', year: 1985, genre: 'Acción', rating: 6.5}) 
+CREATE (d:Director {name: 'George P. Cosmatos'})
+CREATE (a:Actor {name: 'Sylvester Stallone', born: 1946 })
+CREATE (a:Actor {name: 'Richard Crenna', born: 1926 })
+CREATE (a:Actor {name: 'Charles Napier', born: 1936 })
 
-	MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (d:Director {name: 'George P. Cosmatos'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Sylvester Stallone', born: 1946 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Richard Crenna', born: 1926 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (d:Director {name: 'George P. Cosmatos'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Charles Napier', born: 1936 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Sylvester Stallone', born: 1946 })
+CREATE (a)-[:Acted_in]->(m)
 
-2. Película Teminator 
-	
-	CREATE (m:Movie {title: 'The Terminator', year: 1984, genre: 'Acción', rating: 8.0}) 
-	
-	MATCH (m:Movie{title: 'The Terminator'}), (d:Director {name: 'James Cameron'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Linda Hamilton', born: 1956 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Richard Crenna', born: 1926 })
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Michael Biehn', born: 1956 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Rambo: Acorralado Parte II'}), (a:Actor {name: 'Charles Napier', born: 1936 })
+CREATE (a)-[:Acted_in]->(m)
 
-3. Película Falla de San Andreas 
 	
-	CREATE (m:Movie {title: 'La Falla de San Andreas', year: 2015, genre: 'Aventura', rating: 6.1}) 
-	
-	MATCH (m:Movie{title: 'La Falla de San Andreas'}), (d:Director {name: 'Brad Peyton'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Dwayne Johnson', born: 1972 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Carla Gugino', born: 1971 })
-	CREATE (m)-[:Actor_in]->(a) 
+CREATE (m:Movie {title: 'The Terminator', year: 1984, genre: 'Acción', rating: 8.0})
 
-	MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Alexandra Daddario', born: 1986 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
+CREATE (d:Director {name: 'James Cameron'})
+CREATE (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
+CREATE (a:Actor {name: 'Linda Hamilton', born: 1956 })
+CREATE (a:Actor {name: 'Michael Biehn', born: 1956 })
 
-4. Película Depredador
-	
-	CREATE (m:Movie {title: 'Depredador', year: 1987, genre: 'Acción', rating: 7.8}) 
-	
-	MATCH (m:Movie{title: 'Depredador'}), (d:Director {name: 'John McTiernand'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Carl Weathers', born: 1948 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'The Terminator'}), (d:Director {name: 'James Cameron'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Jesse Ventura', born: 1951 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Linda Hamilton', born: 1956 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'The Terminator'}), (a:Actor {name: 'Michael Biehn', born: 1956 })
+CREATE (a)-[:Acted_in]->(m)
+
+CREATE (m:Movie {title: 'La Falla de San Andreas', year: 2015, genre: 'Acción', rating: 6.1})
+
+CREATE (d:Director {name: 'Brad Peyton'})
+CREATE (a:Actor {name: 'Dwayne Johnson', born: 1972 })
+CREATE (a:Actor {name: 'Carla Gugino', born: 1971 })
+CREATE (a:Actor {name: 'Alexandra Daddario', born: 1986 })
+
+MATCH (m:Movie{title: 'La Falla de San Andreas'}), (d:Director {name: 'Brad Peyton'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Dwayne Johnson', born: 1972 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Carla Gugino', born: 1971 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'La Falla de San Andreas'}), (a:Actor {name: 'Alexandra Daddario', born: 1986 })
+CREATE (a)-[:Acted_in]->(m)
+
+	
+	
+CREATE (m:Movie {title: 'Depredador', year: 1987, genre: 'Acción', rating: 7.8})
+
+CREATE (d:Director {name: 'John McTiernan'})
+CREATE (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
+CREATE (a:Actor {name: 'Carl Weathers', born: 1948 })
+CREATE (a:Actor {name: 'Jesse Ventura', born: 1951 })
+
+MATCH (m:Movie{title: 'Depredador'}), (d:Director {name: 'John McTiernan'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Arnold Schwarzenegger', born: 1947 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Carl Weathers', born: 1948 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Depredador'}), (a:Actor {name: 'Jesse Ventura', born: 1951 })
+CREATE (a)-[:Acted_in]->(m)
+
  
+CREATE (m:Movie {title: 'Spider-Man 2', year: 2004, genre: 'Acción', rating: 7.3})
+
+CREATE (d:Director {name: 'Sam Raimi'})
+CREATE (a:Actor {name: 'Tobey Maguire', born: 1975 })
+CREATE (a:Actor {name: 'Kirsten Dunst', born: 1982 })
+CREATE (a:Actor {name: 'Alfred Molina', born: 1953})
+
+MATCH (m:Movie{title: 'Spider-Man 2'}), (d:Director {name: 'Sam Raimi'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Tobey Maguire', born: 1975 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Kirsten Dunst', born: 1982 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Alfred Molina', born: 1953})
+CREATE (a)-[:Acted_in]->(m)
+
 	
-5. Película Spider Man 2
-	
-	CREATE (m:Movie {title: 'Spider-Man 2', year: 2004, genre: 'Aventura', rating: 7.3}) 
-	
-	MATCH (m:Movie{title: 'Spider-Man 2'}), (d:Director {name: 'Sam Raimi'})
-	CREATE (m)-[:Directed_by]->(d) 
+CREATE (m:Movie {title: 'Shrek', year: 2001, genre: 'Comedia', rating: 7.8})
 
-	MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Tobey Maguire', born: 1975 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Kirsten Dunst', born: 1982 })
-	CREATE (m)-[:Actor_in]->(a) 
+CREATE (d:Director {name: 'Andrew Adamson'})
+CREATE (d:Director {name: 'Vicky Jenson'})
+CREATE (a:Actor {name: 'Mike Myers', born: 1963 })
+CREATE (a:Actor {name: 'Eddie Murphy', born: 1961 })
+CREATE (a:Actor {name: 'Cameron Diaz', born: 1972})
 
-	MATCH (m:Movie{title: 'Spider-Man 2'}), (a:Actor {name: 'Alfred Molina', born: 1953})
-	CREATE (m)-[:Actor_in]->(a) 
-	
-6. Película Shrek
-	
-	CREATE (m:Movie {title: 'Shrek', year: 2001, genre: 'Comedia', rating: 7.8}) 
-	
-	MATCH (m:Movie{title: 'Shrek'}), (d:Director {name: 'Andrew Adamson, Vicky Jenson'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Mike Myers', born: 1963 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Eddie Murphy', born: 1961 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Shrek'}), (d:Director {name: 'Andrew Adamson'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Cameron Diaz', born: 1972})
-	CREATE (m)-[:Actor_in]->(a) 
-	
-7. Película Alerta Roja
-	
-	CREATE (m:Movie {title: 'Alerta roja', year: 1990, genre: 'Thriller', rating: 7.6}) 
-	
-	MATCH (m:Movie{title: 'Alerta roja'}), (d:Director {name: 'John McTiernan'})
-	CREATE (m)-[:Directed_by]->(d) 
+MATCH (m:Movie{title: 'Shrek'}), (d:Director {name: 'Vicky Jenson'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Sean Connery', born: 1930 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Alec Baldwin', born: 1958 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Mike Myers', born: 1963 })
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Scott Glenn', born: 1941})
-	CREATE (m)-[:Actor_in]->(a) 
-	
+MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Eddie Murphy', born: 1961 })
+CREATE (a)-[:Acted_in]->(m)
 
-8. Película Harry Potter
-	
-	CREATE (m:Movie {title: 'Harry Potter y la piedra filosofal', year: 2001, genre: 'Fantasía', rating: 7.6}) 
-	
-	MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (d:Director {name: 'Chris Columbus'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Daniel Radcliffe', born: 1989 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Emma Watson', born: 1990 })
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Shrek'}), (a:Actor {name: 'Cameron Diaz', born: 1972})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Rupert Grint', born: 1988})
-	CREATE (m)-[:Actor_in]->(a) 
-	
-9. Película Red de Mentiras
-	
-	CREATE (m:Movie {title: 'Red de mentiras', year: 2008, genre: 'Suspenso', rating: 7.1}) 
-	
-	MATCH (m:Movie{title: 'Red de mentiras'}), (d:Director {name: 'Ridley Scott'})
-	CREATE (m)-[:Directed_by]->(d) 
-	
-	MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Russell Crowe', born: 1964 })
-	CREATE (m)-[:Actor_in]->(a) 
 
-	MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Mark Strong', born: 1963})
-	CREATE (m)-[:Actor_in]->(a) 
-	
-10. Película Viernes 13
-	
-	CREATE (m:Movie {title: 'Viernes 13', year: 1980, genre: 'Terror', rating: 6.4}) 
-	
-	MATCH (m:Movie{title: 'Viernes 13'}), (d:Director {name: 'Sean S. Cunningham'})
-	CREATE (m)-[:Directed_by]->(d) 
+CREATE (m:Movie {title: 'Alerta roja', year: 1990, genre: 'Terror', rating: 7.6})
 
-	MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Adrienne King', born: 1960 })
-	CREATE (m)-[:Actor_in]->(a) 
-	
-	MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Harry Crosby', born: 1958 })
-	CREATE (m)-[:Actor_in]->(a) 
+CREATE (d:Director {name: 'John McTiernan'})
+CREATE (a:Actor {name: 'Sean Connery', born: 1930 })
+CREATE (a:Actor {name: 'Alec Baldwin', born: 1958 })
+CREATE (a:Actor {name: 'Scott Glenn', born: 1941})
 
-	MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Kevin Bacon', born: 1958})
-	CREATE (m)-[:Actor_in]->(a) 
+MATCH (m:Movie{title: 'Alerta roja'}), (d:Director {name: 'John McTiernan'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Sean Connery', born: 1930 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Alec Baldwin', born: 1958 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Alerta roja'}), (a:Actor {name: 'Scott Glenn', born: 1941})
+CREATE (a)-[:Acted_in]->(m)
+
+
+	
+CREATE (m:Movie {title: 'Harry Potter y la piedra filosofal', year: 2001, genre: 'Ciencia Ficción', rating: 7.6})
+
+CREATE (d:Director {name: 'Chris Columbus'})
+CREATE (a:Actor {name: 'Daniel Radcliffe', born: 1989 })
+CREATE (a:Actor {name: 'Emma Watson', born: 1990 })
+CREATE (a:Actor {name: 'Rupert Grint', born: 1988})
+
+MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (d:Director {name: 'Chris Columbus'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Daniel Radcliffe', born: 1989 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Emma Watson', born: 1990 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Harry Potter y la piedra filosofal'}), (a:Actor {name: 'Rupert Grint', born: 1988})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Red de mentiras', year: 2008, genre: 'Terror', rating: 7.1})
+
+CREATE (d:Director {name: 'Ridley Scott'})
+CREATE (a:Actor {name: 'Leonardo DiCaprio', born: 1974 })
+CREATE (a:Actor {name: 'Russell Crowe', born: 1964 })
+CREATE (a:Actor {name: 'Mark Strong', born: 1963})
+
+MATCH (m:Movie{title: 'Red de mentiras'}), (d:Director {name: 'Ridley Scott'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Russell Crowe', born: 1964 })
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie{title: 'Red de mentiras'}), (a:Actor {name: 'Mark Strong', born: 1963})
+CREATE (a)-[:Acted_in]->(m)
+
 	
 
-11. Película el Padrino 
-
-	CREATE (m:Movie {title: 'El Padrino', year: 1972, genre: 'Drama', rating: 9.2})
-
-	MATCH (m:Movie {title: 'El Padrino'}), (d:Director {name: 'Francis Ford Coppola'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'Marlon Brando', born: 1924})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'Al Pacino', born: 1940})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'James Caan', born: 1940})
-	CREATE (m)-[:Actor_in]->(a)
-
-12. Película Titanic 
-
-	CREATE (m:Movie {title: 'Titanic', year: 1997, genre: 'Romance', rating: 7.8})
-
-	MATCH (m:Movie {title: 'Titanic'}), (d:Director {name: 'James Cameron'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Kate Winslet', born: 1975})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Billy Zane', born: 1966})
-	CREATE (m)-[:Actor_in]->(a)
-
-13. Pelicula El Señor de los Anillos 
-
-	CREATE (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo', year: 2001, genre: 'Fantasía', rating: 8.8})
-
-	MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (d:Director {name: 'Peter Jackson'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Elijah Wood', born: 1981})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Ian McKellen', born: 1939})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Viggo Mortensen', born: 1958})
-	CREATE (m)-[:Actor_in]->(a)
-
-14. Película Matrix 
-
-	CREATE (m:Movie {title: 'Matrix', year: 1999, genre: 'Ciencia ficción', rating: 8.7})
-
-	MATCH (m:Movie {title: 'Matrix'}), (d:Director {name: 'Lana Wachowski'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Matrix'}), (d:Director {name: 'Lilly Wachowski'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Keanu Reeves', born: 1964})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Laurence Fishburne', born: 1961})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Carrie-Anne Moss', born: 1967})
-	CREATE (m)-[:Actor_in]->(a)
-
-15. Película Pulp Fiction 
-
-	CREATE (m:Movie {title: 'Pulp Fiction', year: 1994, genre: 'Crimen', rating: 8.9})
-
-	MATCH (m:Movie {title: 'Pulp Fiction'}), (d:Director {name: 'Quentin Tarantino'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Pulp Fiction'}), (a:Actor {name: 'John Travolta', born: 1954})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Pulp Fiction'}), (a:Actor {name: 'Uma Thurman', born: 1970})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Pulp Fiction'}), (a:Actor {name: 'Samuel L. Jackson', born: 1948})
-	CREATE (m)-[:Actor_in]->(a)
-
-16. Película El Rey León 
-
-	CREATE (m:Movie {title: 'El Rey León', year: 1994, genre: 'Animación', rating: 8.5})
-
-	MATCH (m:Movie {title: 'El Rey León'}), (d:Director {name: 'Roger Allers'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'El Rey León'}), (d:Director {name: 'Rob Minkoff'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'Matthew Broderick', born: 1962})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'James Earl Jones', born: 1931})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'Jeremy Irons', born: 1948})
-	CREATE (m)-[:Actor_in]->(a)
-
-17. Película Inception 
-
-	CREATE (m:Movie {title: 'Inception', year: 2010, genre: 'Ciencia ficción', rating: 8.8})
-
-	MATCH (m:Movie {title: 'Inception'}), (d:Director {name: 'Christopher Nolan'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Joseph Gordon-Levitt', born: 1981})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Ellen Page', born: 1987})
-	CREATE (m)-[:Actor_in]->(a)
-
-18. Película The Avengers 
-
-	CREATE (m:Movie {title: 'The Avengers', year: 2012, genre: 'Acción', rating: 8.0})
-
-	MATCH (m:Movie {title: 'The Avengers'}), (d:Director {name: 'Joss Whedon'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Robert Downey Jr.', born: 1965})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Chris Evans', born: 1981})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Scarlett Johansson', born: 1984})
-	CREATE (m)-[:Actor_in]->(a)
 	
-19. Película Forrest Gump 
+CREATE (m:Movie {title: 'Viernes 13', year: 1980, genre: 'Terror', rating: 6.4})
 
-	CREATE (m:Movie {title: 'Forrest Gump', year: 1994, genre: 'Drama', rating: 8.8})
+CREATE (d:Director {name: 'Sean S. Cunningham'})
+CREATE (a:Actor {name: 'Adrienne King', born: 1960 })
+CREATE (a:Actor {name: 'Harry Crosby', born: 1958 })
+CREATE (a:Actor {name: 'Kevin Bacon', born: 1958})
 
-	MATCH (m:Movie {title: 'Forrest Gump'}), (d:Director {name: 'Robert Zemeckis'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie{title: 'Viernes 13'}), (d:Director {name: 'Sean S. Cunningham'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Tom Hanks', born: 1956})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Adrienne King', born: 1960 })
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Robin Wright', born: 1966})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Harry Crosby', born: 1958 })
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Gary Sinise', born: 1955})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie{title: 'Viernes 13'}), (a:Actor {name: 'Kevin Bacon', born: 1958})
+CREATE (a)-[:Acted_in]->(m)
 
-20. Película El Gran Lebowski 
 
-	CREATE (m:Movie {title: 'El Gran Lebowski', year: 1998, genre: 'Comedia', rating: 8.1})
+CREATE (m:Movie {title: 'El Padrino', year: 1972, genre: 'Romance', rating: 9.2})
 
-	MATCH (m:Movie {title: 'El Gran Lebowski'}), (d:Director {name: 'Joel Coen'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'Francis Ford Coppola'})
+CREATE (a:Actor {name: 'Marlon Brando', born: 1924})
+vCREATE (a:Actor {name: 'Al Pacino', born: 1940})
+CREATE (a:Actor {name: 'James Caan', born: 1940})
 
-	MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'Jeff Bridges', born: 1949})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Padrino'}), (d:Director {name: 'Francis Ford Coppola'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'John Goodman', born: 1952})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'Marlon Brando', born: 1924})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'Julianne Moore', born: 1960})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'Al Pacino', born: 1940})
+CREATE (a)-[:Acted_in]->(m)
 
-21. Película Interstellar
+MATCH (m:Movie {title: 'El Padrino'}), (a:Actor {name: 'James Caan', born: 1940})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'Interstellar', year: 2014, genre: 'Ciencia ficción', rating: 8.6})
+CREATE (m:Movie {title: 'Titanic', year: 1997, genre: 'Romance', rating: 7.8})
 
-	MATCH (m:Movie {title: 'Interstellar'}), (d:Director {name: 'Christopher Nolan'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'James Cameron'})
+CREATE (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
+CREATE (a:Actor {name: 'Kate Winslet', born: 1975})
+CREATE (a:Actor {name: 'Billy Zane', born: 1966})
 
-	MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Matthew McConaughey', born: 1969})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Titanic'}), (d:Director {name: 'James Cameron'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Anne Hathaway', born: 1982})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Jessica Chastain', born: 1977})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Kate Winslet', born: 1975})
+CREATE (a)-[:Acted_in]->(m)
 
-22. Pelicula EL Laberinto del Fauno 
+MATCH (m:Movie {title: 'Titanic'}), (a:Actor {name: 'Billy Zane', born: 1966})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'El Laberinto del Fauno', year: 2006, genre: 'Fantasía', rating: 8.2})
 
-	MATCH (m:Movie {title: 'El Laberinto del Fauno'}), (d:Director {name: 'Guillermo del Toro'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo', year: 2001, genre: 'Ciencia Ficción', rating: 8.8})
 
-	MATCH (m:Movie {title: 'El Laberinto del Fauno'}), (a:Actor {name: 'Ivana Baquero', born: 1994})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Peter Jackson'})
+CREATE (a:Actor {name: 'Elijah Wood', born: 1981})
+CREATE (a:Actor {name: 'Ian McKellen', born: 1939})
+CREATE (a:Actor {name: 'Viggo Mortensen', born: 1958})
 
-	MATCH (m:Movie {title: 'El Laberinto del Fauno'}), (a:Actor {name: 'Sergi López', born: 1965})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (d:Director {name: 'Peter Jackson'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'El Laberinto del Fauno'}), (a:Actor {name: 'Maribel Verdú', born: 1970})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Elijah Wood', born: 1981})
+CREATE (a)-[:Acted_in]->(m)
 
-23. Película El Resplandor 
+MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Ian McKellen', born: 1939})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'El Resplandor', year: 1980, genre: 'Terror', rating: 8.4})
+MATCH (m:Movie {title: 'El Señor de los Anillos: La Comunidad del Anillo'}), (a:Actor {name: 'Viggo Mortensen', born: 1958})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El Resplandor'}), (d:Director {name: 'Stanley Kubrick'})
-	CREATE (m)-[:Directed_by]->(d)
 
-	MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Jack Nicholson', born: 1937})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'Matrix', year: 1999, genre: 'Ciencia Ficción', rating: 8.7})
 
-	MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Shelley Duvall', born: 1949})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Lana Wachowski'})
+CREATE (d:Director {name: 'Lilly Wachowski'})
+CREATE (a:Actor {name: 'Keanu Reeves', born: 1964})
+CREATE (a:Actor {name: 'Laurence Fishburne', born: 1961})
+CREATE (a:Actor {name: 'Carrie-Anne Moss', born: 1967})
 
-	MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Danny Lloyd', born: 1972})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Matrix'}), (d:Director {name: 'Lana Wachowski'})
+CREATE (d)-[:Directed]->(m)
 
-24. Pelicula La La Land 
+MATCH (m:Movie {title: 'Matrix'}), (d:Director {name: 'Lilly Wachowski'})
+CREATE (d)-[:Directed]->(m)
 
-	CREATE (m:Movie {title: 'La La Land', year: 2016, genre: 'Musical', rating: 8.0})
+MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Keanu Reeves', born: 1964})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'La La Land'}), (d:Director {name: 'Damien Chazelle'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Laurence Fishburne', born: 1961})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'La La Land'}), (a:Actor {name: 'Ryan Gosling', born: 1980})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Matrix'}), (a:Actor {name: 'Carrie-Anne Moss', born: 1967})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'La La Land'}), (a:Actor {name: 'Emma Stone', born: 1988})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'La La Land'}), (a:Actor {name: 'John Legend', born: 1978})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'El Rey León', year: 1994, genre: 'Ciencia Ficción', rating: 8.5})
+
+CREATE (d:Director {name: 'Roger Allers'})
+CREATE (d:Director {name: 'Rob Minkoff'})
+CREATE (a:Actor {name: 'Matthew Broderick', born: 1962})
+CREATE (a:Actor {name: 'James Earl Jones', born: 1931})
+CREATE (a:Actor {name: 'Jeremy Irons', born: 1948})
+
+MATCH (m:Movie {title: 'El Rey León'}), (d:Director {name: 'Roger Allers'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'El Rey León'}), (d:Director {name: 'Rob Minkoff'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'Matthew Broderick', born: 1962})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'James Earl Jones', born: 1931})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El Rey León'}), (a:Actor {name: 'Jeremy Irons', born: 1948})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Inception', year: 2010, genre: 'Ciencia Ficción', rating: 8.8})
+
+CREATE (d:Director {name: 'Christopher Nolan'})
+CREATE (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
+CREATE (a:Actor {name: 'Joseph Gordon-Levitt', born: 1981})
+CREATE (a:Actor {name: 'Ellen Page', born: 1987})
+
+MATCH (m:Movie {title: 'Inception'}), (d:Director {name: 'Christopher Nolan'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Leonardo DiCaprio', born: 1974})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Joseph Gordon-Levitt', born: 1981})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Inception'}), (a:Actor {name: 'Ellen Page', born: 1987})
+CREATE (a)-[:Acted_in]->(m)
+
+
+
+CREATE (m:Movie {title: 'The Avengers', year: 2012, genre: 'Acción', rating: 8.0})
+
+CREATE (d:Director {name: 'Joss Whedon'})
+CREATE (a:Actor {name: 'Robert Downey', born: 1965})
+CREATE (a:Actor {name: 'Chris Evans', born: 1981})
+CREATE (a:Actor {name: 'Scarlett Johansson', born: 1984})
+
+MATCH (m:Movie {title: 'The Avengers'}), (d:Director {name: 'Joss Whedon'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Robert Downey', born: 1965})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Chris Evans', born: 1981})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'The Avengers'}), (a:Actor {name: 'Scarlett Johansson', born: 1984})
+CREATE (a)-[:Acted_in]->(m)
 	
-25. Película El Club de la Lucha 
 
-	CREATE (m:Movie {title: 'El Club de la Lucha', year: 1999, genre: 'Drama', rating: 8.8})
+CREATE (m:Movie {title: 'Forrest Gump', year: 1994, genre: 'Drama', rating: 8.8})
 
-	MATCH (m:Movie {title: 'El Club de la Lucha'}), (d:Director {name: 'David Fincher'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'Robert Zemeckis'})
+CREATE (a:Actor {name: 'Tom Hanks', born: 1956})
+CREATE (a:Actor {name: 'Robin Wright', born: 1966})
+CREATE (a:Actor {name: 'Gary Sinise', born: 1955})
 
-	MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Brad Pitt', born: 1963})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Forrest Gump'}), (d:Director {name: 'Robert Zemeckis'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Edward Norton', born: 1969})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Tom Hanks', born: 1956})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Helena Bonham Carter', born: 1966})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Robin Wright', born: 1966})
+CREATE (a)-[:Acted_in]->(m)
 
+MATCH (m:Movie {title: 'Forrest Gump'}), (a:Actor {name: 'Gary Sinise', born: 1955})
+CREATE (a)-[:Acted_in]->(m)
 
-26. Pelicula Machete 
 
-	CREATE (m:Movie {title: 'Machete', year: 2010, genre: 'Acción', rating: 6.6})
+CREATE (m:Movie {title: 'El Gran Lebowski', year: 1998, genre: 'Comedia', rating: 8.1})
 
-	MATCH (m:Movie {title: 'Machete'}), (d:Director {name: 'Robert Rodriguez'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'Joel Coen'})
+CREATE (a:Actor {name: 'Jeff Bridges', born: 1949})
+CREATE (a:Actor {name: 'John Goodman', born: 1952})
+CREATE (a:Actor {name: 'Julianne Moore', born: 1960})
 
-	MATCH (m:Movie {title: 'Machete'}), (a:Actor {name: 'Danny Trejo', born: 1944})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Gran Lebowski'}), (d:Director {name: 'Joel Coen'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Machete'}), (a:Actor {name: 'Michelle Rodriguez', born: 1978})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'Jeff Bridges', born: 1949})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Machete'}), (a:Actor {name: 'Jessica Alba', born: 1981})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'John Goodman', born: 1952})
+CREATE (a)-[:Acted_in]->(m)
 
-27. Pelicula Guardianes de la Galaxia 
+MATCH (m:Movie {title: 'El Gran Lebowski'}), (a:Actor {name: 'Julianne Moore', born: 1960})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'Guardianes de la Galaxia', year: 2014, genre: 'Acción', rating: 8.0})
 
-	MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (d:Director {name: 'James Gunn'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (m:Movie {title: 'Interstellar', year: 2014, genre: 'Ciencia Ficción', rating: 8.6})
 
-	MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Chris Pratt', born: 1979})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Christopher Nolan'})	
+CREATE (a:Actor {name: 'Matthew McConaughey', born: 1969})
+CREATE (a:Actor {name: 'Anne Hathaway', born: 1982})
+CREATE (a:Actor {name: 'Jessica Chastain', born: 1977})
 
-	MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Zoe Saldana', born: 1978})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Interstellar'}), (d:Director {name: 'Christopher Nolan'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Dave Bautista', born: 1969})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Matthew McConaughey', born: 1969})
+CREATE (a)-[:Acted_in]->(m)
 
-28. Pelicula Teen Beach Movie 
+MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Anne Hathaway', born: 1982})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'Teen Beach Movie', year: 2013, genre: 'Musical', rating: 5.8})
+MATCH (m:Movie {title: 'Interstellar'}), (a:Actor {name: 'Jessica Chastain', born: 1977})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Teen Beach Movie'}), (d:Director {name: 'Jeffrey Hornaday'})
-	CREATE (m)-[:Directed_by]->(d)
 
-	MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Ross Lynch', born: 1995})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Maia Mitchell', born: 1993})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'El Resplandor', year: 1980, genre: 'Terror', rating: 8.4})
 
-	MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Grace Phipps', born: 1992})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Stanley Kubrick'})
+CREATE (a:Actor {name: 'Jack Nicholson', born: 1937})
+CREATE (a:Actor {name: 'Shelley Duvall', born: 1949})
+CREATE (a:Actor {name: 'Danny Lloyd', born: 1972})
 
-29. Película El Furor del Dragón 
+MATCH (m:Movie {title: 'El Resplandor'}), (d:Director {name: 'Stanley Kubrick'})
+CREATE (d)-[:Directed]->(m)
 
-	CREATE (m:Movie {title: 'El furor del Dragón', year: 1972, genre: 'Acción', rating: 7.3})
+MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Jack Nicholson', born: 1937})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El furor del Dragón'}), (d:Director {name: 'Bruce Lee'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Shelley Duvall', born: 1949})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El furor del Dragón'}), (a:Actor {name: 'Bruce Lee', born: 1940})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Resplandor'}), (a:Actor {name: 'Danny Lloyd', born: 1972})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El furor del Dragón'}), (a:Actor {name: 'Nora Miao', born: 1952})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'El furor del Dragón'}), (a:Actor {name: 'Chuck Norris', born: 1940})
-	CREATE (m)-[:Actor_in]->(a)
-
-30. Pelicula Matanza de Texas
-
-	CREATE (m:Movie {title: 'La matanza de Texas', year: 1974, genre: 'Terror', rating: 7.5})
-
-	MATCH (m:Movie {title: 'La matanza de Texas'}), (d:Director {name: 'Tobe Hooper'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Marilyn Burns', born: 1949})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Gunnar Hansen', born: 1947})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Edwin Neal', born: 1945})
-	CREATE (m)-[:Actor_in]->(a)
-
-31. Película El Tiburón 
-
-	CREATE (m:Movie {title: 'Tiburón', year: 1975, genre: 'Suspenso', rating: 8.0})
-
-	MATCH (m:Movie {title: 'Tiburón'}), (d:Director {name: 'Steven Spielberg'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Roy Scheider', born: 1932})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Robert Shaw', born: 1927})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Richard Dreyfuss', born: 1947})
-	CREATE (m)-[:Actor_in]->(a)
-
-32. Película Kung Fu Panda
-
-	CREATE (m:Movie {title: 'Kung Fu Panda', year: 2008, genre: 'Animación', rating: 7.5})
-
-	MATCH (m:Movie {title: 'Kung Fu Panda'}), (d:Director {name: 'Mark Osborne'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Jack Black', born: 1969})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Dustin Hoffman', born: 1937})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Angelina Jolie', born: 1975})
-	CREATE (m)-[:Actor_in]->(a)
-
-33. Pelicula Cars 
-
-	CREATE (m:Movie {title: 'Cars', year: 2006, genre: 'Animación', rating: 7.1})
-
-	MATCH (m:Movie {title: 'Cars'}), (d:Director {name: 'John Lasseter'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Owen Wilson', born: 1968})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Paul Newman', born: 1925})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Bonnie Hunt', born: 1961})
-	CREATE (m)-[:Actor_in]->(a)
-
-34. Pelicula Los Locos Adams 
-
-	CREATE (m:Movie {title: 'Los Locos Adams', year: 1991, genre: 'Comedia', rating: 6.9})
-
-	MATCH (m:Movie {title: 'Los Locos Adams'}), (d:Director {name: 'Barry Sonnenfeld'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Anjelica Huston', born: 1951})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Raul Julia', born: 1940})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Christopher Lloyd', born: 1938})
-	CREATE (m)-[:Actor_in]->(a)
-
-35. Pelicula El exorcista
-
-	CREATE (m:Movie {title: 'El Exorcista', year: 1973, genre: 'Terror', rating: 8.0})
-
-	MATCH (m:Movie {title: 'El Exorcista'}), (d:Director {name: 'William Friedkin'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Ellen Burstyn', born: 1932})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Linda Blair', born: 1959})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Max von Sydow', born: 1929})
-	CREATE (m)-[:Actor_in]->(a)
-
-36. Pelicula Inquebranteble 
-
-	CREATE (m:Movie {title: 'Inquebrantable', year: 2014, genre: 'Drama', rating: 7.2})
-
-	MATCH (m:Movie {title: 'Inquebrantable'}), (d:Director {name: 'Angelina Jolie'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Jack O''Connell', born: 1990})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Domhnall Gleeson', born: 1983})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Miyavi', born: 1981})
-	CREATE (m)-[:Actor_in]->(a)
-
-37. Película Big Hero 6 
-
-	CREATE (m:Movie {title: 'Big Hero 6', year: 2014, genre: 'Animación', rating: 7.8})
-
-	MATCH (m:Movie {title: 'Big Hero 6'}), (d:Director {name: 'Don Hall'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Ryan Potter', born: 1995})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Scott Adsit', born: 1965})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Jamie Chung', born: 1983})
-	CREATE (m)-[:Actor_in]->(a)
-
-38. Película Sonic 
-
-	CREATE (m:Movie {title: 'Sonic la película', year: 2020, genre: 'Acción', rating: 6.5})
-
-	MATCH (m:Movie {title: 'Sonic la película'}), (d:Director {name: 'Jeff Fowler'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'Ben Schwartz'})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'James Marsden'})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'Jim Carrey'})
-	CREATE (m)-[:Actor_in]->(a)
-
-39. Película Soul 
-	CREATE (m:Movie {title: 'Soul', year: 2020, genre: 'Animación', rating: 8.1})
-
-	MATCH (m:Movie {title: 'Soul'}), (d:Director {name: 'Pete Docter'})
-	CREATE (m)-[:Directed_by]->(d)
-
-	MATCH (m:Movie {title: 'Soul'}), (a:Actor {name: 'Jamie Foxx', born: 1967})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Soul'}), (a:Actor {name: 'Tina Fey', born: 1970})
-	CREATE (m)-[:Actor_in]->(a)
-
-	MATCH (m:Movie {title: 'Soul'}), (a:Actor {name: 'Graham Norton', born: 1963})
-	CREATE (m)-[:Actor_in]->(a)
 	
-40. Película Wonder Woman 
-	CREATE (m:Movie {title: 'Wonder Woman', year: 2017, genre: 'Acción', rating: 7.4})
 
-	MATCH (m:Movie {title: 'Wonder Woman'}), (d:Director {name: 'Patty Jenkins'})
-	CREATE (m)-[:Directed_by]->(d)
 
-	MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Gal Gadot', born: 1985})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'El Club de la Lucha', year: 1999, genre: 'Drama', rating: 8.8})
 
-	MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Chris Pine', born: 1980})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'David Fincher'})
+CREATE (a:Actor {name: 'Brad Pitt', born: 1963})	
+CREATE (a:Actor {name: 'Edward Norton', born: 1969})
+CREATE (a:Actor {name: 'Helena Bonham Carter', born: 1966})
 
-	MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Robin Wright', born: 1966})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Club de la Lucha'}), (d:Director {name: 'David Fincher'})
+CREATE (d)-[:Directed]->(m)
 
-41. Pelicula El Faro 
-	CREATE (m:Movie {title: 'El faro', year: 2019, genre: 'Drama', rating: 7.5})
+MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Brad Pitt', born: 1963})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El faro'}), (d:Director {name: 'Robert Eggers'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Edward Norton', born: 1969})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El faro'}), (a:Actor {name: 'Willem Dafoe', born: 1955})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'El Club de la Lucha'}), (a:Actor {name: 'Helena Bonham Carter', born: 1966})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El faro'}), (a:Actor {name: 'Robert Pattinson', born: 1986})
-	CREATE (m)-[:Actor_in]->(a)
-	
-42. Pelicula 1917 
 
-	CREATE (m:Movie {title: '1917', year: 2019, genre: 'Drama', rating: 8.3})
+CREATE (m:Movie {title: 'Guardianes de la Galaxia', year: 2014, genre: 'Acción', rating: 8.0})
 
-	MATCH (m:Movie {title: '1917'}), (d:Director {name: 'Sam Mendes'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'James Gunn'})
+CREATE (a:Actor {name: 'Chris Pratt', born: 1979})
+CREATE (a:Actor {name: 'Zoe Saldana', born: 1978})
+CREATE (a:Actor {name: 'Dave Bautista', born: 1969})
 
-	MATCH (m:Movie {title: '1917'}), (a:Actor {name: 'George MacKay', born: 1992})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (d:Director {name: 'James Gunn'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: '1917'}), (a:Actor {name: 'Dean-Charles Chapman', born: 1997})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Chris Pratt', born: 1979})
+CREATE (a)-[:Acted_in]->(m)
 
-43. Pelicula Rapidos y Furiosos 
+MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Zoe Saldana', born: 1978})
+CREATE (a)-[:Acted_in]->(m)
 
-		CREATE (m:Movie {title: 'Rápidos y furiosos', year: 2001, genre: 'Acción', rating: 6.8})
+MATCH (m:Movie {title: 'Guardianes de la Galaxia'}), (a:Actor {name: 'Dave Bautista', born: 1969})
+CREATE (a)-[:Acted_in]->(m)
 
-		MATCH (m:Movie {title: 'Rápidos y furiosos'}), (d:Director {name: 'Rob Cohen'})
-		CREATE (m)-[:Directed_by]->(d)
 
-		MATCH (m:Movie {title: 'Rápidos y furiosos'}), (a:Actor {name: 'Vin Diesel', born: 1967})
-		CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'Teen Beach Movie', year: 2013, genre: 'Drama', rating: 5.8})
 
-		MATCH (m:Movie {title: 'Rápidos y furiosos'}), (a:Actor {name: 'Paul Walker', born: 1973})
-		CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Jeffrey Hornaday'})
+CREATE (a:Actor {name: 'Ross Lynch', born: 1995})
+CREATE (a:Actor {name: 'Maia Mitchell', born: 1993})
+CREATE (a:Actor {name: 'Grace Phipps', born: 1992})
 
-		MATCH (m:Movie {title: 'Rápidos y furiosos'}), (a:Actor {name: 'Michelle Rodriguez', born: 1978})
-		CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Teen Beach Movie'}), (d:Director {name: 'Jeffrey Hornaday'})
+CREATE (d)-[:Directed]->(m)
 
-44. Pelicula Godzilla 
-	CREATE (m:Movie {title: 'Godzilla', year: 2014, genre: 'Acción', rating: 6.4})
+MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Ross Lynch', born: 1995})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Godzilla'}), (d:Director {name: 'Gareth Edwards'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Maia Mitchell', born: 1993})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Aaron Taylor-Johnson', born: 1990})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Teen Beach Movie'}), (a:Actor {name: 'Grace Phipps', born: 1992})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Bryan Cranston', born: 1956})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Elizabeth Olsen', born: 1989})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'La matanza de Texas', year: 1974, genre: 'Terror', rating: 7.5})
 
-45. Pelicula Transformers 
+CREATE (d:Director {name: 'Tobe Hooper'})
+CREATE (a:Actor {name: 'Marilyn Burns', born: 1949})
+CREATE (a:Actor {name: 'Gunnar Hansen', born: 1947})
+CREATE (a:Actor {name: 'Edwin Neal', born: 1945})
 
-	CREATE (m:Movie {title: 'Transformers', year: 2007, genre: 'Acción', rating: 7.0})
+MATCH (m:Movie {title: 'La matanza de Texas'}), (d:Director {name: 'Tobe Hooper'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Transformers'}), (d:Director {name: 'Michael Bay'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Marilyn Burns', born: 1949})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Shia LaBeouf', born: 1986})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Gunnar Hansen', born: 1947})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Megan Fox', born: 1986})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'La matanza de Texas'}), (a:Actor {name: 'Edwin Neal', born: 1945})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Josh Duhamel', born: 1972})
-	CREATE (m)-[:Actor_in]->(a)
 
-46. película El gato con botas
+CREATE (m:Movie {title: 'Tiburón', year: 1975, genre: 'Terror', rating: 8.0})
 
-	CREATE (m:Movie {title: 'El gato con botas', year: 2011, genre: 'Animación', rating: 6.6})
+CREATE (d:Director {name: 'Steven Spielberg'})
+CREATE (a:Actor {name: 'Roy Scheider', born: 1932})
+CREATE (a:Actor {name: 'Robert Shaw', born: 1927})
+CREATE (a:Actor {name: 'Richard Dreyfuss', born: 1947})
 
-	MATCH (m:Movie {title: 'El gato con botas'}), (d:Director {name: 'Chris Miller'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'Tiburón'}), (d:Director {name: 'Steven Spielberg'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'El gato con botas'}), (a:Actor {name: 'Antonio Banderas', born: 1960})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Roy Scheider', born: 1932})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El gato con botas'}), (a:Actor {name: 'Salma Hayek', born: 1966})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Robert Shaw', born: 1927})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El gato con botas'}), (a:Actor {name: 'Zach Galifianakis', born: 1969})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Tiburón'}), (a:Actor {name: 'Richard Dreyfuss', born: 1947})
+CREATE (a)-[:Acted_in]->(m)
 
-47. Pelicula Roma 
-	CREATE (m:Movie {title: 'Roma', year: 2018, genre: 'Drama', rating: 7.7})
 
-	MATCH (m:Movie {title: 'Roma'}), (d:Director {name: 'Alfonso Cuarón'})
-	CREATE (m)-[:Directed_by]->(d)
 
-	MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Yalitza Aparicio', born: 1993})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'Kung Fu Panda', year: 2008, genre: 'Ciencia Ficción', rating: 7.5})
 
-	MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Marina de Tavira', born: 1974})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (d:Director {name: 'Mark Osborne'})
+CREATE (a:Actor {name: 'Jack Black', born: 1969})
+CREATE (a:Actor {name: 'Dustin Hoffman', born: 1937})
+CREATE (a:Actor {name: 'Angelina Jolie', born: 1975})
 
-	MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Diego Cortina Autrey', born: 2010})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Kung Fu Panda'}), (d:Director {name: 'Mark Osborne'})
+CREATE (d)-[:Directed]->(m)
 
-48. Pelicula Todo sobre mi Madre 
+MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Jack Black', born: 1969})
+CREATE (a)-[:Acted_in]->(m)
 
-	CREATE (m:Movie {title: 'Todo sobre mi madre', year: 1999, genre: 'Drama', rating: 7.8})
+MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Dustin Hoffman', born: 1937})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Todo sobre mi madre'}), (d:Director {name: 'Pedro Almodóvar'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'Kung Fu Panda'}), (a:Actor {name: 'Angelina Jolie', born: 1975})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Cecilia Roth', born: 1956})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Marisa Paredes', born: 1946})
-	CREATE (m)-[:Actor_in]->(a)
 
-	MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Penélope Cruz', born: 1974})
-	CREATE (m)-[:Actor_in]->(a)
+CREATE (m:Movie {title: 'Cars', year: 2006, genre: 'Ciencia Ficción', rating: 7.1})
 
-49. Pelicula Una voz silenciosa 
-	CREATE (m:Movie {title: 'Una voz silenciosa', year: 2016, genre: 'Drama', rating: 8.2})
+CREATE (d:Director {name: 'John Lasseter'})
+CREATE (a:Actor {name: 'Owen Wilson', born: 1968})
+CREATE (a:Actor {name: 'Paul Newman', born: 1925})
+CREATE (a:Actor {name: 'Bonnie Hunt', born: 1961})
 
-	MATCH (m:Movie {title: 'Una voz silenciosa'}), (d:Director {name: 'Naoko Yamada'})
-	CREATE (m)-[:Directed_by]->(d)
+MATCH (m:Movie {title: 'Cars'}), (d:Director {name: 'John Lasseter'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Miyu Irino', born: 1988})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Owen Wilson', born: 1968})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Saori Hayami', born: 1991})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Paul Newman', born: 1925})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Aoi Yuki', born: 1992})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Cars'}), (a:Actor {name: 'Bonnie Hunt', born: 1961})
+CREATE (a)-[:Acted_in]->(m)
 
-50. El viaje de chihiro 
 
-	CREATE (m:Movie {title: 'El viaje de Chihiro', year: 2001, genre: 'Animación', rating: 8.6})
+CREATE (m:Movie {title: 'Los Locos Adams', year: 1991, genre: 'Comedia', rating: 6.9})
 
-	MATCH (m:Movie {title: 'El viaje de Chihiro'}), (d:Director {name: 'Hayao Miyazaki'})
-	CREATE (m)-[:Directed_by]->(d)
+CREATE (d:Director {name: 'Barry Sonnenfeld'})
+CREATE (a:Actor {name: 'Anjelica Huston', born: 1951})
+CREATE (a:Actor {name: 'Raul Julia', born: 1940})
+CREATE (a:Actor {name: 'Christopher Lloyd', born: 1938})
 
-	MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Rumi Hiiragi', born: 1987})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Los Locos Adams'}), (d:Director {name: 'Barry Sonnenfeld'})
+CREATE (d)-[:Directed]->(m)
 
-	MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Miyu Irino', born: 1988})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Anjelica Huston', born: 1951})
+CREATE (a)-[:Acted_in]->(m)
 
-	MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Mari Natsuki', born: 1952})
-	CREATE (m)-[:Actor_in]->(a)
+MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Raul Julia', born: 1940})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Los Locos Adams'}), (a:Actor {name: 'Christopher Lloyd', born: 1938})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'El Exorcista', year: 1973, genre: 'Terror', rating: 8.0})
+
+CREATE (d:Director {name: 'William Friedkin'})
+CREATE (a:Actor {name: 'Ellen Burstyn', born: 1932})
+CREATE (a:Actor {name: 'Linda Blair', born: 1959})
+CREATE (a:Actor {name: 'Max von Sydow', born: 1929})
+
+MATCH (m:Movie {title: 'El Exorcista'}), (d:Director {name: 'William Friedkin'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Ellen Burstyn', born: 1932})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Linda Blair', born: 1959})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El Exorcista'}), (a:Actor {name: 'Max von Sydow', born: 1929})
+CREATE (a)-[:Acted_in]->(m)
+
+
+
+CREATE (m:Movie {title: 'Inquebrantable', year: 2014, genre: 'Drama', rating: 7.2})
+
+CREATE (d:Director {name: 'Angelina Jolie'})
+CREATE (a:Actor {name: 'Jack O''Connell', born: 1990})
+CREATE (a:Actor {name: 'Domhnall Gleeson', born: 1983})
+CREATE (a:Actor {name: 'Miyavi', born: 1981})
+
+MATCH (m:Movie {title: 'Inquebrantable'}), (d:Director {name: 'Angelina Jolie'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Jack O''Connell', born: 1990})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Domhnall Gleeson', born: 1983})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Inquebrantable'}), (a:Actor {name: 'Miyavi', born: 1981})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Big Hero 6', year: 2014, genre: 'Ciencia Ficción', rating: 7.8})
+
+CREATE (d:Director {name: 'Don Hall'})
+CREATE (a:Actor {name: 'Ryan Potter', born: 1995})
+CREATE (a:Actor {name: 'Scott Adsit', born: 1965})
+CREATE (a:Actor {name: 'Jamie Chung', born: 1983})
+
+MATCH (m:Movie {title: 'Big Hero 6'}), (d:Director {name: 'Don Hall'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Ryan Potter', born: 1995})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Scott Adsit', born: 1965})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Big Hero 6'}), (a:Actor {name: 'Jamie Chung', born: 1983})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Sonic la película', year: 2020, genre: 'Acción', rating: 6.5})
+
+CREATE (d:Director {name: 'Jeff Fowler'})
+CREATE (a:Actor {name: 'Ben Schwartz'})
+CREATE (a:Actor {name: 'James Marsden'})
+CREATE (a:Actor {name: 'Jim Carrey'})
+
+MATCH (m:Movie {title: 'Sonic la película'}), (d:Director {name: 'Jeff Fowler'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'Ben Schwartz'})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'James Marsden'})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Sonic la película'}), (a:Actor {name: 'Jim Carrey'})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Wonder Woman', year: 2017, genre: 'Acción', rating: 7.4})
+
+CREATE (d:Director {name: 'Patty Jenkins'})
+CREATE (a:Actor {name: 'Gal Gadot', born: 1985})
+CREATE (a:Actor {name: 'Chris Pine', born: 1980})
+CREATE (a:Actor {name: 'Robin Wright', born: 1966})
+
+MATCH (m:Movie {title: 'Wonder Woman'}), (d:Director {name: 'Patty Jenkins'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Gal Gadot', born: 1985})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Chris Pine', born: 1980})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Wonder Woman'}), (a:Actor {name: 'Robin Wright', born: 1966})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'El faro', year: 2019, genre: 'Drama', rating: 7.5})
+
+CREATE (d:Director {name: 'Robert Eggers'})
+CREATE (a:Actor {name: 'Willem Dafoe', born: 1955})
+CREATE (a:Actor {name: 'Robert Pattinson', born: 1986})
+
+MATCH (m:Movie {title: 'El faro'}), (d:Director {name: 'Robert Eggers'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'El faro'}), (a:Actor {name: 'Willem Dafoe', born: 1955})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El faro'}), (a:Actor {name: 'Robert Pattinson', born: 1986})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: '1917', year: 2019, genre: 'Drama', rating: 8.3})
+
+CREATE (d:Director {name: 'Sam Mendes'})
+CREATE (a:Actor {name: 'George MacKay', born: 1992})
+CREATE (a:Actor {name: 'Dean-Charles Chapman', born: 1997})
+
+MATCH (m:Movie {title: '1917'}), (d:Director {name: 'Sam Mendes'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: '1917'}), (a:Actor {name: 'George MacKay', born: 1992})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: '1917'}), (a:Actor {name: 'Dean-Charles Chapman', born: 1997})
+CREATE (a)-[:Acted_in]->(m)
+
+
+
+CREATE (m:Movie {title: 'Godzilla', year: 2014, genre: 'Acción', rating: 6.4})
+
+CREATE (d:Director {name: 'Gareth Edwards'})
+CREATE (a:Actor {name: 'Aaron Taylor-Johnson', born: 1990})
+CREATE (a:Actor {name: 'Bryan Cranston', born: 1956})
+CREATE (a:Actor {name: 'Elizabeth Olsen', born: 1989})
+
+MATCH (m:Movie {title: 'Godzilla'}), (d:Director {name: 'Gareth Edwards'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Aaron Taylor-Johnson', born: 1990})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Bryan Cranston', born: 1956})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Godzilla'}), (a:Actor {name: 'Elizabeth Olsen', born: 1989})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Transformers', year: 2007, genre: 'Acción', rating: 7.0})
+
+CREATE (d:Director {name: 'Michael Bay'})
+CREATE (a:Actor {name: 'Shia LaBeouf', born: 1986})
+CREATE (a:Actor {name: 'Megan Fox', born: 1986})
+CREATE (a:Actor {name: 'Josh Duhamel', born: 1972})
+
+MATCH (m:Movie {title: 'Transformers'}), (d:Director {name: 'Michael Bay'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Shia LaBeouf', born: 1986})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Megan Fox', born: 1986})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Transformers'}), (a:Actor {name: 'Josh Duhamel', born: 1972})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Roma', year: 2018, genre: 'Drama', rating: 7.7})
+
+CREATE (d:Director {name: 'Alfonso Cuarón'})
+CREATE (a:Actor {name: 'Yalitza Aparicio', born: 1993})
+CREATE (a:Actor {name: 'Marina de Tavira', born: 1974})
+CREATE (a:Actor {name: 'Diego Cortina Autrey', born: 2010})
+
+MATCH (m:Movie {title: 'Roma'}), (d:Director {name: 'Alfonso Cuarón'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Yalitza Aparicio', born: 1993})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Marina de Tavira', born: 1974})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Roma'}), (a:Actor {name: 'Diego Cortina Autrey', born: 2010})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Todo sobre mi madre', year: 1999, genre: 'Drama', rating: 7.8})
+
+CREATE (d:Director {name: 'Pedro Almodóvar'})
+CREATE (a:Actor {name: 'Cecilia Roth', born: 1956})	
+CREATE (a:Actor {name: 'Marisa Paredes', born: 1946})
+CREATE (a:Actor {name: 'Penélope Cruz', born: 1974})
+
+MATCH (m:Movie {title: 'Todo sobre mi madre'}), (d:Director {name: 'Pedro Almodóvar'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Cecilia Roth', born: 1956})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Marisa Paredes', born: 1946})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Todo sobre mi madre'}), (a:Actor {name: 'Penélope Cruz', born: 1974})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'Una voz silenciosa', year: 2016, genre: 'Drama', rating: 8.2})
+
+CREATE (d:Director {name: 'Naoko Yamada'})
+CREATE (a:Actor {name: 'Miyu Irino', born: 1988})
+CREATE (a:Actor {name: 'Saori Hayami', born: 1991})
+CREATE (a:Actor {name: 'Aoi Yuki', born: 1992})
+
+MATCH (m:Movie {title: 'Una voz silenciosa'}), (d:Director {name: 'Naoko Yamada'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Miyu Irino', born: 1988})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Saori Hayami', born: 1991})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'Una voz silenciosa'}), (a:Actor {name: 'Aoi Yuki', born: 1992})
+CREATE (a)-[:Acted_in]->(m)
+
+
+CREATE (m:Movie {title: 'El viaje de Chihiro', year: 2001, genre: 'Drama', rating: 8.6})
+
+CREATE (d:Director {name: 'Hayao Miyazaki'})
+CREATE (a:Actor {name: 'Rumi Hiiragi', born: 1987})
+CREATE (a:Actor {name: 'Miyu Irino', born: 1988}) 
+CREATE (a:Actor {name: 'Mari Natsuki', born: 1952})
+ 
+MATCH (m:Movie {title: 'El viaje de Chihiro'}), (d:Director {name: 'Hayao Miyazaki'})
+CREATE (d)-[:Directed]->(m)
+
+MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Rumi Hiiragi', born: 1987})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Miyu Irino', born: 1988})
+CREATE (a)-[:Acted_in]->(m)
+
+MATCH (m:Movie {title: 'El viaje de Chihiro'}), (a:Actor {name: 'Mari Natsuki', born: 1952})
+CREATE (a)-[:Acted_in]->(m)

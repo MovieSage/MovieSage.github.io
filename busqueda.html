@@ -4,8 +4,18 @@
 <head>
     <title>búsqueda de recomendaciones</title>
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template. -->
     <link href="css/estiloRecomendaciones" rel="stylesheet">
+    
+    <!-- API que se utiliza para poder comunicar JS con Neo4J por medio de HTML. -->
+    <script src="https://unpkg.com/neo4j-driver"></script>
+
+    <!-- JQuery para realizar las querys y funciones. -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- Import del archivo main.js para poder utilizar las funciones. -->
+    <script src="js/main.js"></script>
+
 
 </head>
 
@@ -33,7 +43,7 @@
         <label for="ranking">Ranking:</label>
         <input type="range" id="ranking" name="ranking" min="1" max="10" step="1">
       </div>
-      <input type="submit" value="Buscar" class="button" id="search">
+      <button type="submit" value="Buscar" class="button" id="search" onclick="createAndrunQuery()">Buscar</button>
     </form>
   </div>
 

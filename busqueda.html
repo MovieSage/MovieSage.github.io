@@ -3,9 +3,11 @@
 
 <head>
     <title>búsqueda de recomendaciones</title>
-
-    <!-- Custom styles for this template. -->
-    <link href="css/estiloRecomendaciones" rel="stylesheet">
+  
+    <!-- Custom styles for this template-->
+    <link href="css/general_style.css" rel="stylesheet">
+    <link href="css/estiloRecomendaciones.css" rel="stylesheet">
+    <link href="css/moreStyles.css" rel="stylesheet">
     
     <!-- API que se utiliza para poder comunicar JS con Neo4J por medio de HTML. -->
     <script src="https://unpkg.com/neo4j-driver"></script>
@@ -19,42 +21,103 @@
 
 </head>
 
-<body>
+<body id="page-top">
+
   <div class="container">
-    <h1>Búsqueda de Películas</h1>
-    <form>
-      <div class="form-group">
-        <label for="actor">Actor:</label>
-        <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
-      </div>
-      <div class="form-group">
-        <label for="director">Director:</label>
-        <input type="text" id="director" name="director" placeholder="Nombre del director">
-      </div>
-      <div class="form-group">
-        <label>Género:</label>
-        <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
-        <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
-        <label for="genre-terror"><input type="radio" id="genre-terror" name="genre" value="drama"> Terror</label>
-        <label for="genre-romance"><input type="radio" id="genre-romance" name="genre" value="drama"> Romance </label>
-        <label for="genre-SciFi"><input type="radio" id="genre-SciFi" name="genre" value="drama"> Ciencia Ficción </label>
-      </div>
-      <div class="form-group">
-        <label for="ranking">Ranking:</label>
-        <input type="range" id="ranking" name="ranking" min="1" max="10" step="1">
-      </div>
-      <button type="submit" value="Buscar" class="button" id="search" onclick="createAndrunQuery()">Buscar</button>
-    </form>
-  </div>
-
+      <h1>Búsqueda de Películas</h1>
+      <form id="search-form">
+        <div class="form-group">
+          <label for="actor">Actor:</label>
+          <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
+        </div>
+        <div class="form-group">
+          <label for="director">Director:</label>
+          <input type="text" id="director" name="director" placeholder="Nombre del director">
+        </div>
+        <div class="form-group">
+          <label>Género:</label>
+          <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
+          <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
+          <label for="genre-terror"><input type="radio" id="genre-drama" name="genre" value="drama"> Terror</label>
+          <label for="genre-romance"><input type="radio" id="genre-drama" name="genre" value="drama"> Romance </label>
+          <label for="genre-SciFi"><input type="radio" id="genre-drama" name="genre" value="drama"> Ciencia Ficción </label>
+        </div>
+        <div class="form-group">
+          <label for="ranking">Ranking:&nbsp<span id="slider-value">5</span></label>
+          <input type="range" id="ranking" name="ranking" min="1" max="10" step="0.1">
+          
+        </div>
+        <input type="submit" value="Buscar" class="button">
+      </form>
+    </div>
   
+    <div class="container">
+      <h2>Recomendaciones de Películas</h2>
   
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+      <div class="matrix" id="RecommendingSpace">
+        <div class="movie-card" id="movieSpace1">
+          <h3 id="movieTitle1">Película 1</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear1">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank1">punteo</span></p>
+          <p id="movieGenre1">Género</p>
+          <p id="movieDirector1">Director</p>
+          <p id="movieActor1">Actores</p>
+        </div>
+        <div class="movie-card" id="movieSpace2">
+          <h3 id="movieTitle2">Película 2</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear2">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank2">punteo</span></p>
+          <p id="movieGenre2">Género</p>
+          <p id="movieDirector2">Director</p>
+          <p id="movieActor2">Actores</p>
+        </div>
+        <div class="movie-card" id="movieSpace3">
+          <h3 id="movieTitle3">Película 3</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear3">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank3">punteo</span></p>
+          <p id="movieGenre3">Género</p>
+          <p id="movieDirector3">Director</p>
+          <p id="movieActor3">Actores</p>
+        </div>
+        <div class="movie-card" id="movieSpace4">
+          <h3 id="movieTitle4">Película 4</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear4">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank4">punteo</span></p>
+          <p id="movieGenre4">Género</p>
+          <p id="movieDirector4">Director</p>
+          <p id="movieActor4">Actores</p>
+        </div>
+        <div class="movie-card" id="movieSpace5">
+          <h3 id="movieTitle5">Película 5</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear5">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank5">punteo</span></p>
+          <p id="movieGenre5">Género</p>
+          <p id="movieDirector5">Director</p>
+          <p id="movieActor5">Actores</p>
+        </div>
+        <div class="movie-card" id="movieSpace6">
+          <h3 id="movieTitle6">Película 6</h3>
+          <p>Año de publicación:&nbsp<span id="movieYear6">año</span></p>
+          <p>Ranking:&nbsp<span id="movieRank6">punteo</span></p>
+          <p id="movieGenre6">Género</p>
+          <p id="movieDirector6">Director</p>
+          <p id="movieActor6">Actores</p>
+        </div>
+      </div>
+  
+      <div class="back-button">
+        <button id="back" onclick="window.history.back()">Atrás</button>
+      </div>
+    </div>
 
-
-</body>
-
-</html>
+    <script>
+      const slider = document.getElementById('ranking');
+      const sliderValue = document.getElementById('slider-value');
+  
+      // Actualizar el valor del slider cuando se cambie su posición
+      slider.addEventListener('input', () => {
+          sliderValue.textContent = slider.value;
+      });
+  </script>
+  </body>
+  </html>

@@ -10,7 +10,7 @@ function createAndrunQuery() {
   
   var counter = 1
   var counterD = 0
-  const driver = neo4j.driver('bolt://52.70.153.190:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
+  const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
   const actorName = document.getElementById('actor').value;
   const directorName = document.getElementById('director').value;
   const rankingSlider = document.getElementById('ranking');

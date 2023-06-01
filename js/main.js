@@ -24,24 +24,18 @@ function createAndrunQuery() {
   
   const conditions = [];
 
-  let query = '';
+  let query = 'MATCH (m:Movie) ';
 
-      if (actorName) {
-        query += `MATCH (a:Actor {name: '${actorName}'})-[:Acted_in]->(m:Movie)`;
+    // Condiciones para unir con actores y directores
+    if (actorName) {
+        query += `MATCH (a:Actor {name: '${actorName}'})-[:Acted_in]->(m)`;
     }
 
     if (directorName) {
-        if (!actorName) {
-            query += 'MATCH ';
-        } else {
-            query += 'MATCH ';
-        }
-        query += `(d:Director {name: '${directorName}'})-[:Directed]->(m:Movie)`;
-    } else if (!actorName) {
-        // si no se ha definido ni un actor ni un director, simplemente buscamos cualquier película
-        query += 'MATCH (m:Movie) ';
+        query += `MATCH (d:Director {name: '${directorName}'})-[:Directed]->(m)`;
     }
 
+    // Condiciones para género y ranking
     if ((labelText && !(labelText.match("No importa")) )) {
         conditions.push(`m.genre = '${labelText}'`);
     }
@@ -50,16 +44,20 @@ function createAndrunQuery() {
         conditions.push(`m.rating >= ${rankingValue}`);
     }
 
+    // Agregar las condiciones a la consulta
     if (conditions.length > 0) {
         query += ' WHERE ' + conditions.join(' AND ');
     }
 
+    // Decidir qué retornar
     if (actorName || directorName) {
         query += ' RETURN m.title, m.year, m.rating, m.genre';
         
         if (directorName) {
             query += ', d.name';
         }
+    } else {
+        query += ' RETURN m.title, m.year, m.rating, m.genre';
     }
   
 

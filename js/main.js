@@ -169,14 +169,14 @@ function setCards(arrayMoviesAsObj){
 
 }
 
-async function anadir_pelicula(movieNamePeli,yearPeli, generoPeli, RatingPeli, DierectoPeli, ActorPeli) {
+async function anadir_pelicula(movieNamePeli, yearPeli, generoPeli, RatingPeli, DirectorPeli, ActorPeli) {
     const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
     const session = driver.session();
 
         // Crear la consulta
         const query=   `
             CREATE (m:Movie {title: $(movieNamePeli), year: $(yearPeli), genre: $(generoPeli), rating: $(RatingPeli)})
-            CREATE (d:Director {name: $(DierectoPeli)})
+            CREATE (d:Director {name: $(DirectorPeli)})
             CREATE (a:Actor {name: $(ActorPeli)})
             MATCH (m:Movie {title: $(movieNamePeli)}),(d:Director {name: $(DierectoPeli)})
             CREATE (d)-[:DIRECTED]->(m)
@@ -193,6 +193,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
     const movieName = document.getElementById('movie').value;
     const actorName = document.getElementById('actor').value;
     const directorName = document.getElementById('director').value;
+    const yearValue = document.getElementById('year').value;
     const rankingSlider = document.getElementById('ranking');
     const rankingValue = parseFloat(rankingSlider.value).toFixed(1);
     const selectedRadioButton = document.querySelector('input[name="genre"]:checked');
@@ -203,7 +204,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
 
     // Llamar a la función anadir_pelicula con los valores obtenidos
     try {
-        const resultado = await anadir_pelicula(movieName, actorName, directorName, rankingValue, labelText);
+        const resultado = await anadir_pelicula(movieName, yearValue, actorName, directorName, rankingValue, labelText);
         console.log('Película agregada:', resultado);
 
         // Resto del código para mostrar un mensaje de éxito o realizar otra acción

@@ -169,33 +169,21 @@ function setCards(arrayMoviesAsObj){
 
 }
 
-async function anadir_pelicula(movieName, actorName, directorName, rankingValue, labelText) {
+async function anadir_pelicula(movieNamePeli,yearPeli, generoPeli, RatingPeli, DierectoPeli, ActorPeli) {
     const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
     const session = driver.session();
 
-    try {
         // Crear la consulta
-        const result = await session.run(
-            `
-            MERGE (m:Movie {title: $movieName, genre: $labelText, rating: $rankingValue})
-            MERGE (a:Actor {name: $actorName})
-            MERGE (d:Director {name: $directorName})
-            MERGE (a)-[:ACTED_IN]->(m)
-            MERGE (d)-[:DIRECTED]->(m)
-            RETURN m
-            `,
-            { movieName, actorName, directorName, rankingValue, labelText }
-        );
-
-        const movie = result.records[0].get('m').properties;
-        console.log("Película añadida con éxito");
-        return movie;
-    } catch (error) {
-        console.error('Error ejecutando la consulta Cypher', error);
-    } finally {
-        await session.close();
-        await driver.close();
-    }
+        const query=   `
+            CREATE (m:Movie {title: $(movieNamePeli), year: $(yearPeli), genre: $(generoPeli), rating: $(RatingPeli)})
+            CREATE (d:Director {name: $(DierectoPeli)})
+            CREATE (a:Actor {name: $(ActorPeli)})
+            MATCH (m:Movie {title: $(movieNamePeli)}),(d:Director {name: $(DierectoPeli)})
+            CREATE (d)-[:DIRECTED]->(m)
+            MATCH (m:Movie {title: $(movieNamePeli)}),(a:Actor {name: $(ActorPeli)})
+            CREATE (d)-[:DIRECTED]->(m)
+            
+            `;
 }
 
 document.getElementById('search-form').addEventListener('submit', async (event) => {

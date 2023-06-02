@@ -69,9 +69,13 @@
         sliderValue.textContent = slider.value;
     });
 
+
+
+
     document.getElementById('save-button').addEventListener('click', function(event) {
         event.preventDefault();  // Previene el comportamiento por defecto del botón
-        anadir_pelicula();  // Ejecuta la función anadir_pelicula()
+        let movieName = document.getElementById('movie').value;
+        anadir_pelicula(movieName,actorName,directorName,rankingValue,labelText);  // Ejecuta la función anadir_pelicula()
         location.reload();  // Refresca la página
     });
 

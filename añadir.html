@@ -73,9 +73,9 @@
         try {
             const result = await session.run(
                 `
-            CREATE (m:Movie {title: $title, year: $year, genre: $genre, rating: $rating})
-            CREATE (d:Director {name: $director})
-            CREATE (a:Actor {name: $actor})
+            MERGE (m:Movie {title: $title, year: $year, genre: $genre, rating: $rating})
+            MERGE (d:Director {name: $director})
+            MERGE (a:Actor {name: $actor})
             WITH m, d, a
             MATCH (m:Movie {title: $title}), (d:Director {name: $director})
             CREATE (d)-[:Directed]->(m)
@@ -87,7 +87,6 @@
             );
 
             console.log('Película creada en la base de datos:', result.summary.counters);
-
         } catch (error) {
             console.error('Error al crear la película en la base de datos:', error);
         } finally {

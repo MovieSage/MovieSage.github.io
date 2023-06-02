@@ -51,7 +51,7 @@
     </a>
 
     <div class="back-button">
-      <button id="back" onclick="window.history.back()">Atrás</button>
+        <button id="back" onclick="location.href='index.html'">Atrás</button>
     </div>
   </div>
 <script>
@@ -60,6 +60,7 @@
         event.preventDefault(); // Prevenir el envío del formulario
         mainQuery(); // Llamar a la función createAndrunQuery()
     });
+
     const slider = document.getElementById('ranking');
     const sliderValue = document.getElementById('slider-value');
 
@@ -67,6 +68,7 @@
     slider.addEventListener('input', () => {
         sliderValue.textContent = slider.value;
     });
+
     document.getElementById('save-button').addEventListener('click', function(event) {
         event.preventDefault();  // Previene el comportamiento por defecto del botón
         anadir_pelicula();  // Ejecuta la función anadir_pelicula()

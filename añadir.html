@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
     <title>Añadir recomendaciones</title>
+    <script src="js/main.js"></script>
     
     <!-- Custom styles for this template-->
     <link href="css/general_style.css" rel="stylesheet">
@@ -17,6 +19,10 @@
     <h1>Recomendar Películas</h1>
     <form id="search-form">
       <div class="form-group">
+        <label for="actor">Título de película:</label>
+        <input type="text" id="movie" name="movie" placeholder="Nombre película">
+      </div>
+      <div class="form-group">
         <label for="actor">Actor:</label>
         <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
       </div>
@@ -28,15 +34,15 @@
         <label>Género:</label>
         <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
         <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
-        <label for="genre-terror"><input type="radio" id="genre-drama" name="genre" value="drama"> Terror</label>
-        <label for="genre-romance"><input type="radio" id="genre-drama" name="genre" value="drama"> Romance </label>
-        <label for="genre-SciFi"><input type="radio" id="genre-drama" name="genre" value="drama"> Ciencia Ficción </label>
+        <label for="genre-terror"><input type="radio" id="genre-terror" name="genre" value="drama"> Terror</label>
+        <label for="genre-romance"><input type="radio" id="genre-romance" name="genre" value="drama"> Romance </label>
+        <label for="genre-SciFi"><input type="radio" id="genre-SciFi" name="genre" value="drama"> Ciencia Ficción </label>
       </div>
       <div class="form-group">
         <label for="ranking">Ranking:&nbsp<span id="slider-value">5</span></label>
         <input type="range" id="ranking" name="ranking" min="0" max="10" step="0.1">
       </div>
-      <input type="submit" value="Guardar Recomendación" class="button">
+        <input type="submit" id="save-button" value="Guardar Recomendación" class="button">
     </form>
 
     <!-- Scroll to Top Button-->
@@ -48,7 +54,12 @@
       <button id="back" onclick="window.history.back()">Atrás</button>
     </div>
   </div>
-  <script>
+<script>
+    const searchForm = document.getElementById('search-form');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario
+        mainQuery(); // Llamar a la función createAndrunQuery()
+    });
     const slider = document.getElementById('ranking');
     const sliderValue = document.getElementById('slider-value');
 
@@ -56,6 +67,15 @@
     slider.addEventListener('input', () => {
         sliderValue.textContent = slider.value;
     });
+    document.getElementById('save-button').addEventListener('click', function(event) {
+        event.preventDefault();  // Previene el comportamiento por defecto del botón
+        anadir_pelicula();  // Ejecuta la función anadir_pelicula()
+        location.reload();  // Refresca la página
+    });
+
 </script>
+
 </body>
+
+
 </html>

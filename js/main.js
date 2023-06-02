@@ -163,3 +163,46 @@ function setCards(arrayMoviesAsObj){
   }
 
 }
+
+function anadir_pelicula() {
+    var counter = 1
+    var counterD = 0
+    const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
+    const movieName = document.getElementById('movie').value; // Asumiendo que tienes un input para el nombre de la película
+    const actorName = document.getElementById('actor').value;
+    const directorName = document.getElementById('director').value;
+    const rankingSlider = document.getElementById('ranking');
+    const rankingValue = parseFloat(rankingSlider.value).toFixed(1);
+    const selectedRadioButton = document.querySelector('input[name="genre"]:checked');
+    let labelText = ''; // Valor predeterminado si no se selecciona ningún radio button
+
+    if (selectedRadioButton) {
+        labelText = selectedRadioButton.value;
+    }
+
+    // Crear la consulta
+    const session = driver.session();
+    const query = `MERGE (m:Movie {title: '${movieName}', genre: '${labelText}', rating: ${rankingValue}}) 
+                   MERGE (a:Actor {name: '${actorName}'}) 
+                   MERGE (d:Director {name: '${directorName}'}) 
+                   MERGE (a)-[:ACTED_IN]->(m) 
+                   MERGE (d)-[:DIRECTED]->(m)`;
+
+    // Ejecutar la consulta
+    session.run(query)
+        .then(result => {
+            console.log("Película añadida con éxito");
+        })
+        .catch(error => {
+            console.error('Error ejecutando la consulta Cypher', error);
+        })
+        .finally(() => {
+            session.close();
+            driver.close();
+        });
+}
+
+
+async function asad(){
+    console.log("pato")
+}

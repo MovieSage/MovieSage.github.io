@@ -4,8 +4,7 @@
 <head>
     <script src="https://unpkg.com/neo4j-driver"></script>
     <title>Añadir recomendaciones</title>
-    <script src="js/main.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- Custom styles for this template-->
     <link href="css/general_style.css" rel="stylesheet">
     <link href="css/estiloRecomendaciones.css" rel="stylesheet">
@@ -18,34 +17,34 @@
 <div class="container">
     <h1>Recomendar Películas</h1>
     <form id="addForm">
-      <div class="form-group">
-        <label for="actor">Título de película:</label>
-        <input type="text" id="movie" name="movie" placeholder="Nombre película">
-      </div>
-      <div class="form-group">
-        <label for="actor">Actor:</label>
-        <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
-      </div>
-      <div class="form-group">
-        <label for="director">Director:</label>
-        <input type="text" id="director" name="director" placeholder="Nombre del director">
-      </div>
-      <div class="form-group">
-          <label for="year">Año:</label>
-          <input type="text" id="year" name="year" placeholder="Año de publicación">
-      </div>
-      <div class="form-group">
-        <label>Género:</label>
-        <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
-        <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
-        <label for="genre-terror"><input type="radio" id="genre-terror" name="genre" value="drama"> Terror</label>
-        <label for="genre-romance"><input type="radio" id="genre-romance" name="genre" value="drama"> Romance </label>
-        <label for="genre-SciFi"><input type="radio" id="genre-SciFi" name="genre" value="drama"> Ciencia Ficción </label>
-      </div>
-      <div class="form-group">
-        <label for="ranking">Ranking:&nbsp<span id="slider-value">5</span></label>
-        <input type="range" id="ranking" name="ranking" min="0" max="10" step="0.1">
-      </div>
+        <div class="form-group">
+            <label for="actor">Título de película:</label>
+            <input type="text" id="movie" name="movie" placeholder="Nombre película">
+        </div>
+        <div class="form-group">
+            <label for="actor">Actor:</label>
+            <input type="text" id="actor" name="actor" placeholder="Nombre del actor">
+        </div>
+        <div class="form-group">
+            <label for="director">Director:</label>
+            <input type="text" id="director" name="director" placeholder="Nombre del director">
+        </div>
+        <div class="form-group">
+            <label for="year">Año:</label>
+            <input type="text" id="year" name="year" placeholder="Año de publicación">
+        </div>
+        <div class="form-group">
+            <label>Género:</label>
+            <label for="genre-action"><input type="radio" id="genre-action" name="genre" value="acción"> Acción</label>
+            <label for="genre-comedy"><input type="radio" id="genre-comedy" name="genre" value="comedia"> Comedia</label>
+            <label for="genre-terror"><input type="radio" id="genre-terror" name="genre" value="drama"> Terror</label>
+            <label for="genre-romance"><input type="radio" id="genre-romance" name="genre" value="drama"> Romance </label>
+            <label for="genre-SciFi"><input type="radio" id="genre-SciFi" name="genre" value="drama"> Ciencia Ficción </label>
+        </div>
+        <div class="form-group">
+            <label for="ranking">Ranking:&nbsp<span id="slider-value">5</span></label>
+            <input type="range" id="ranking" name="ranking" min="0" max="10" step="0.1">
+        </div>
         <input type="submit" id="save-button" value="Guardar Recomendación" class="button">
     </form>
 
@@ -57,11 +56,9 @@
     <div class="back-button">
         <button id="back" onclick="location.href='index.html'">Atrás</button>
     </div>
-  </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossOrigin="anonymous">
+<script>
     const slider = document.getElementById('ranking');
     const sliderValue = document.getElementById('slider-value');
 
@@ -69,73 +66,31 @@
     slider.addEventListener('input', () => {
         sliderValue.textContent = slider.value;
     });
-    async function anadir_pelicula(movieNamePeli, yearPeli, generoPeli, RatingPeli, DirectorPeli, ActorPeli) {
+    async function anadir_pelicula(title, director, actor, year, genre, rating) {
         const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
         const session = driver.session();
 
         try {
-            // Verificar si actor existe
-            const Existing_Actor = await session.run(
+            const result = await session.run(
                 `
-                MATCH (n:Actor {name: "$ActorPeli"}) RETURN n
-                `,
-                { ActorPeli }
+            CREATE (m:Movie {title: $title, year: $year, genre: $genre, rating: $rating})
+            CREATE (d:Director {name: $director})
+            CREATE (a:Actor {name: $actor})
+            WITH m, d, a
+            MATCH (m:Movie {title: $title}), (d:Director {name: $director})
+            CREATE (d)-[:Directed]->(m)
+            WITH m, a
+            MATCH (m:Movie {title: $title}), (a:Actor {name: $actor})
+            CREATE (a)-[:Acted_in]->(m)
+            `,
+                { title, director, actor, year: parseInt(year), genre, rating: parseFloat(rating) }
             );
 
-            let ActorNode;
-            if (Existing_Actor.records.length === 0) { // Si el actor no existe debe crearse
-                const CreateActor = await session.run(
-                    `
-                    CREATE (a:Actor {name: "$ActorPeli", born: 0 })
-                    RETURN a
-                    `,
-                    { ActorPeli }
-                );
-
-                ActorNode = CreateActor.records[0].get('a');
-            } else {
-                ActorNode = Existing_Actor.records[0].get('a');
-            }
-
-            // Verificar si el director existe
-            const Existing_Director = await session.run(
-                `
-                MATCH (n:Director {name: "$DirectorPeli"}) RETURN n
-                `,
-                { DirectorPeli }
-            );
-
-            let DirectorNode;
-            if (Existing_Director.records.length === 0) { // Si el director no existe debe crearse
-                const CreateDirector = await session.run(
-                    `
-                    CREATE (d:Director {name: "$DirectorPeli"})
-                    RETURN d
-                    `,
-                    { DirectorPeli }
-                );
-
-                DirectorNode = CreateDirector.records[0].get('d');
-            } else {
-                DirectorNode = Existing_Director.records[0].get('d');
-            }
-
-            // Crear el película y relaciones
-            const Rmovie = await session.run(
-                `
-                CREATE (m:Movie {title: "$movieName", year: $yearValue, genre: "$labelText", rating: $rankingValue})
-                MATCH (d:Director {name: "$DirectorPeli"})-[:Directed]->(m)
-                MATCH (a:Actor {name: "$ActorPeli"})-[:Acted_in]->(m)
-                RETURN m
-                `,
-                { movieNamePeli, yearPeli, generoPeli, RatingPeli, DirectorPeli, ActorPeli }
-            );
-
-            const peliculaF = Rmovie.records[0].get('m').properties;
-            return peliculaF;
+            console.log('Película creada en la base de datos:', result.summary.counters);
+        } catch (error) {
+            console.error('Error al crear la película en la base de datos:', error);
         } finally {
-            await session.close();
-            await driver.close();
+            session.close();
         }
     }
 
@@ -156,15 +111,11 @@
 
         // Llamar a la función con los valores obtenidos
         try {
-            const resultado = await anadir_pelicula(movieName, yearValue, actorName, directorName, rankingValue, labelText);
+            const resultado = await anadir_pelicula(movieName,directorName,actorName,yearValue,labelText,rankingValue);
             console.log('Película agregada:', resultado);
-
-            // Resto del código para mostrar un mensaje de éxito o realizar otra acción
         } catch (error) {
             console.error('Error al agregar la película:', error);
-            // Resto del código para mostrar un mensaje de error o realizar otra acción
         }
-        location.reload();//Refrescar la página
     });
 </script>
 

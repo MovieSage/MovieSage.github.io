@@ -58,6 +58,7 @@
         <button id="back" onclick="location.href='index.html'">Atrás</button>
     </div>
   </div>
+
 <script>
     const searchForm = document.getElementById('search-form');
     searchForm.addEventListener('submit', function(event) {
@@ -73,9 +74,6 @@
         sliderValue.textContent = slider.value;
     });
 
-
-
-
     document.getElementById('save-button').addEventListener('click', function(event) {
         event.preventDefault();  // Previene el comportamiento por defecto del botón
         let movieName = document.getElementById('movie').value;
@@ -83,6 +81,110 @@
         location.reload();  // Refresca la página
     });
 
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossOrigin="anonymous"></script>
+<script>
+    async function anadir_pelicula(movieNamePeli, yearPeli, generoPeli, RatingPeli, DirectorPeli, ActorPeli) {
+        const driver = neo4j.driver('bolt+s://17752ec65c19d6c14955ba70ab41a17f.neo4jsandbox.com:7687', neo4j.auth.basic('neo4j', 'thirteen-photos-snow'));
+        const session = driver.session();
+
+        try {
+            // Verificar si actor existe
+            const Existing_Actor = await session.run(
+                `
+                MATCH (a:Actor {name: $ActorPeli})
+                RETURN a
+                `,
+                { ActorPeli }
+            );
+
+            let ActorNode;
+            if (Existing_Actor.records.length === 0) { // Si el actor no existe debe crearse
+                const CreateActor = await session.run(
+                    `
+                    CREATE (a:Actor {name: $ActorPeli, born: 0 })
+                    RETURN a
+                    `,
+                    { ActorPeli }
+                );
+
+                ActorNode = CreateActor.records[0].get('a');
+            } else {
+                ActorNode = Existing_Actor.records[0].get('a');
+            }
+
+            // Verificar si el director existe
+            const Existing_Director = await session.run(
+                `
+                MATCH (d:Director {name: $DirectorPeli})
+                RETURN d
+                `,
+                { DirectorPeli }
+            );
+
+            let DirectorNode;
+            if (Existing_Director.records.length === 0) { // Si el director no existe debe crearse
+                const CreateDirector = await session.run(
+                    `
+                    CREATE (d:Director {name: $DirectorPeli})
+                    RETURN d
+                    `,
+                    { DirectorPeli }
+                );
+
+                DirectorNode = CreateDirector.records[0].get('d');
+            } else {
+                DirectorNode = Existing_Director.records[0].get('d');
+            }
+
+            // Crear el película y relaciones
+            const Rmovie = await session.run(
+                `
+                CREATE (m:Movie {title: $movieName, year: $yearValue, genre: $labelText, rating: $rankingValue})
+                MATCH (d:Director {name: $DirectorPeli})-[:Directed]->(m)
+                MATCH (a:Actor {name: $ActorPeli})-[:Acted_in]->(m)
+                RETURN m
+                `,
+                { movieNamePeli, yearPeli, generoPeli, RatingPeli, DirectorPeli, ActorPeli }
+            );
+
+            const peliculaF = Rmovie.records[0].get('m').properties;
+            return peliculaF;
+        } finally {
+            await session.close();
+            await driver.close();
+        }
+    }
+
+    document.getElementById('consultaForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        // Obtener los valores de los elementos de entrada
+        const movieName = document.getElementById('movie').value;
+        const actorName = document.getElementById('actor').value;
+        const directorName = document.getElementById('director').value;
+        const yearValue = document.getElementById('year').value;
+        const rankingSlider = document.getElementById('ranking');
+        const rankingValue = parseFloat(rankingSlider.value).toFixed(1);
+        const selectedRadioButton = document.querySelector('input[name="genre"]:checked');
+        let labelText = ''; // Valor predeterminado si no se selecciona ningún radio button
+        if (selectedRadioButton) {
+            labelText = selectedRadioButton.value;
+        }
+
+        // Llamar a la función con los valores obtenidos
+        try {
+            const resultado = await anadir_pelicula(movieName, yearValue, actorName, directorName, rankingValue, labelText);
+            console.log('Película agregada:', resultado);
+
+            // Resto del código para mostrar un mensaje de éxito o realizar otra acción
+        } catch (error) {
+            console.error('Error al agregar la película:', error);
+            // Resto del código para mostrar un mensaje de error o realizar otra acción
+        }
+    });
 </script>
 
 </body>

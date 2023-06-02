@@ -17,7 +17,7 @@
 
 <div class="container">
     <h1>Recomendar Películas</h1>
-    <form id="search-form">
+    <form id="addForm">
       <div class="form-group">
         <label for="actor">Título de película:</label>
         <input type="text" id="movie" name="movie" placeholder="Nombre película">
@@ -73,14 +73,6 @@
     slider.addEventListener('input', () => {
         sliderValue.textContent = slider.value;
     });
-
-    document.getElementById('save-button').addEventListener('click', function(event) {
-        event.preventDefault();  // Previene el comportamiento por defecto del botón
-        let movieName = document.getElementById('movie').value;
-        anadir_pelicula(movieName,actorName,directorName,rankingValue,labelText);  // Ejecuta la función anadir_pelicula()
-        location.reload();  // Refresca la página
-    });
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -159,7 +151,7 @@
         }
     }
 
-    document.getElementById('consultaForm').addEventListener('submit', async (event) => {
+    document.getElementById('addForm').addEventListener('submit', async (event) => {
         event.preventDefault();
         // Obtener los valores de los elementos de entrada
         const movieName = document.getElementById('movie').value;
